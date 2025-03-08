@@ -1,4 +1,4 @@
-param storageAccountName string
+param storageAccountName string = 'csgamescofomo'
 
 param location string = resourceGroup().location
 

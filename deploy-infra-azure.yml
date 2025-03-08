@@ -1,0 +1,28 @@
+name: Deploy Azure Infrastructure
+
+on:
+  workflow_dispatch:
+
+env:
+  AZURE_RESOURCE_GROUP: "csgames-validation-rg"
+  AZURE_LOCATION: "canadacentral"
+  BICEP_FILE_PATH: "./storage-account.bicep"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Deploy Bicep file
+        uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
+          template: ${{ env.BICEP_FILE_PATH }}
+          failOnStdErr: false

@@ -6,7 +6,7 @@ on:
 env:
   AZURE_RESOURCE_GROUP: "csgames-validation-rg"
   AZURE_LOCATION: "canadacentral"
-  BICEP_FILE_PATH: "./storage-account.bicep"
+  BICEP_FILE_PATH: "../../storage-account.bicep"
 
 jobs:
   deploy:
